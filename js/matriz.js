@@ -1,3 +1,5 @@
+// Javascript para prueba similitud juego buscaminas
+
 function aleatorio( minimo, maximo )
 {
 	var numero = Math.floor( Math.random() * (maximo - minimo + 1) + minimo );
