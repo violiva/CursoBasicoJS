@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Ciclos</title>
+
+    <script type="text/javascript">
+    var c, t, b;
+    function calcular()
+    {
+        var numero = Number( t.value );
+        var calculo = 1;
+        var indice = 1;
+/*------------------------------------------------------
+        while( indice <= numero)
+        {
+            calculo = calculo * indice;
+            indice++;
+        }
+------------------------------------------------------*/
+
+        for ( indice=1; indice<=numero; indice++)
+        {
+            calculo = calculo * indice;
+        }
+
+        c.innerHTML = "El resultado del cálculo es : <strong>" + calculo +"</strong>";
+//      o  caja.innerHTML = "El resultado del cálculo es : " + calculo;         
+    }
+
+
+    function inicio()
+    {
+
+        function cambiaColorRojo()
+        {
+            if( t.value == undefined )
+            {
+                t.style.background = "red";
+                alert( t.value );
+            }
+        }
+
+        function cambiaColorBlanco()
+        {
+            t.style.background = "white";
+        }
+
+        c = document.getElementById( "caja" );
+//        c.innerHTML += "<h1><strong>Actualizado</strong></h1> <br />en función <em>inicio</em>-2."
+
+        t = document.getElementById( "valor" );
+        b = document.getElementById( "boton" );
+
+        b.addEventListener( "click", calcular );
+
+/*--------------  más ejemplos
+        b.addEventListener( "mouseover", cambiaColorRojo );
+        b.addEventListener( "mouseout", cambiaColorBlanco );
+-------------------------------------------*/
+        b.addEventListener( "mouseover", cambiaColorRojo );
+        b.addEventListener( "mouseout" , cambiaColorBlanco );
+
+    }
+    </script>
+
+</head>
+<body>
+    <input type="text" id="valor" />
+    <input type="button" id="boton" value="Púlsame" />
+
+    <div id="caja"></div>
+    <script type="text/javascript">
+        inicio();
+    </script>
+</body>
+</html>

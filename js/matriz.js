@@ -41,6 +41,13 @@ var matriz = [ [0, 0, 0, 0, 0 ],
 //		ya que de esta manera puede coincidir que pongamos una mina en una
 //		celda que ya esté ocupada.  
 // Mina 1
+
+/*-----------------------------------------------
+//  09-09-2014
+//  Una vez que ya he llegado al capítulo de los bucles y estructuras en ciclos podemos cambiar
+//  esta parte para conseguir tener el objetivo de 10 bombas en el campo minado
+// evitando repeticiones
+//
 row = aleatorio( 0, 4 );
 col = aleatorio( 0, 4 );
 matriz[row][col] = bomba;
@@ -80,6 +87,21 @@ matriz[row][col] = bomba;
 row = aleatorio( 0, 4 );
 col = aleatorio( 0, 4 );
 matriz[row][col] = bomba;
+-----------------------------------------------*/
+
+var indice = 1;
+while ( indice <= 10 )
+{
+	row = aleatorio( 0, 4 );
+	col = aleatorio( 0, 4 );
+	if ( matriz[row][col] == 0)
+	{
+		matriz[row][col] = bomba;
+		indice++;
+	}
+
+}
+
 
 var userRow = 0;
 var userCol = 0;
