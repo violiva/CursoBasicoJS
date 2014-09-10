@@ -1,11 +1,20 @@
-var dibujo, lienzo;
+var dibujo, lienzo, nl, b;
 function inicio()
 {
+	nl     = document.getElementById( "numLineas" );
+	b      = document.getElementById( "boton" );
+
 	dibujo = document.getElementById( "dibujito" );
 	lienzo = dibujo.getContext( "2d" );
 
-	dibujarTrama( lienzo );
+	b.addEventListener( "click", dibujarTrama );
 
+	// dibujarTrama( lienzo ); ahora lo llamamos desde el evento de hacer click en el botón
+
+}
+
+function dibujaCirculo()
+{
 	lienzo.beginPath();   // nos permite comenzar un nuevo trazo y poder cambiar la tinta de los trazos
 
 	lienzo.moveTo(   0,   0 );
@@ -31,14 +40,15 @@ function inicio()
 
 	lienzo.closePath();
 	lienzo.stroke();
-
 }
 
-function dibujarTrama( l )
+function dibujarTrama()
 {
-	var ancho = 300, alto = 300;
-	var linea = 0;
-	var salto = 30;
+	var l       = lienzo;
+	var rayas   = Number( nl.value );
+	var ancho   = 300, alto = 300;
+	var linea   = 0;
+	var salto   = ancho / rayas;
 	var limiteX = ancho / salto;
 	var limiteY = alto  / salto;
 
@@ -74,6 +84,8 @@ function dibujarTrama( l )
 	l.closePath();
 
 	l.translate( 300, 0 );
+
+	dibujaCirculo();
 
 }
 /*----------------------------------------------------------------------------------------------------
