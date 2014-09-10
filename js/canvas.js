@@ -42,6 +42,42 @@ function dibujarTrama( l )
 	var limiteX = ancho / salto;
 	var limiteY = alto  / salto;
 
+	// viendo qe existe la función translate que desplaza el origen del plano a la posición que queramos y que podemos movernos en 
+	// desplazamientos negativos, he modificado el código utilizado más abajo que sería lo correcto si el intentar pintar fuera del canvas diera error
+	// por el siguiente código utilizando esta variante y moviéndonos en el eje X en 2 bucles:
+	// el primero lo hace desde la posición 0, 0 y trazando rayas oblicuas que pintarán además del cuadrado que nos interesa uno imaginario 
+	// adosado al nuestro y a la izquierda de este, pero como lo que no está en el canvas no se muestra no pasa nada.
+	// Es decir, es como si estuvieramos trazando líneas oblicuas y pintando en 3 cuadrados del mismo tamaño, pero nos salimos del tamaño del cuadro
+	// ya que nos interesa pintar cuando se sobrepasa la diagonal del cuadrado que sólo la pintaría si continuamos desde el cuadrado adyacente.
+	l.beginPath();
+	l.strokeStyle = "#AAA";
+	for ( linea=0; linea <= 2*limiteX; linea++ )
+	{
+		l.moveTo( linea*salto,           0 );
+		l.lineTo( (linea*salto)-ancho, 300 );
+		l.stroke();
+	}
+	l.closePath();
+
+
+
+	l.translate( -300, 0 );
+
+	l.beginPath();
+	l.strokeStyle = "#AAA";
+	for ( linea=0; linea <= 2*limiteX; linea++ )
+	{
+		l.moveTo( linea*salto,           0 );
+		l.lineTo( ancho+(linea*salto), 300 );
+		l.stroke();
+	}
+	l.closePath();
+
+	l.translate( 300, 0 );
+
+}
+/*----------------------------------------------------------------------------------------------------
+
 // Dibujamos líneas verticales en el canvas espaciadas 30 posiciones (pixeles)
 // para trazar cada línea nos posicionamos en el eje superior del canvas ( eje X ), para eso las coordenadas sólo tendrán valor X siendo Y=0. ( Ejemplo 30, 0 )
 // y vamos saltando cada 30 píxeles y trazando líneas verticales desde ( x, 0 ), hasta ( x, alto del canvas )
@@ -128,3 +164,6 @@ function dibujarTrama( l )
 	l.closePath();
 
 }
+----------------------------------------------------------------------------------------------------*/
+
+
